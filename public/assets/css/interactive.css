@@ -257,3 +257,130 @@ to{transform:translateY(100%);transform-origin:0 0;opacity:0}
 .drawer-content::-webkit-scrollbar-track {
   background: #fff;
 }
+
+/* =========================================================
+   JSWAY Header Navigation Dropdown System
+   ========================================================= */
+
+/* Ensure parent swiper container and wrappers do NOT clip the dropdown */
+.unit-header-nav,
+.unit-header-nav .swiper-container,
+.unit-header-nav .swiper-wrapper,
+.unit-header-nav__box {
+  overflow: visible !important;
+}
+
+/* Position context for dropdown */
+.unit-header-nav__item {
+  position: relative !important;
+}
+
+/* Arrow Icon styling & rotation */
+.unit-header-nav__item .unit-header-nav__item-drop {
+  display: inline-block !important;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  font-size: 11px !important;
+  margin-left: 5px !important;
+  cursor: pointer !important;
+}
+
+.unit-header-nav__item:hover .unit-header-nav__item-drop,
+.unit-header-nav__item.dropdown-open .unit-header-nav__item-drop {
+  transform: rotate(180deg) !important;
+}
+
+/* Dropdown Container */
+.unit-header-nav__item-content {
+  display: none !important;
+}
+
+/* Display dropdown on Hover or when opened via click / tap */
+.unit-header-nav__item:hover > .unit-header-nav__item-content,
+.unit-header-nav__item.dropdown-open > .unit-header-nav__item-content {
+  display: block !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  min-width: 260px !important;
+  max-width: 340px !important;
+  background: #ffffff !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  padding: 8px 0 !important;
+  z-index: 999999 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  animation: jswayDropdownFade 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+/* Position rightmost items towards the left to prevent horizontal overflow */
+.unit-header-nav__item:nth-last-child(-n+3) > .unit-header-nav__item-content {
+  left: auto !important;
+  right: 0 !important;
+}
+
+/* Invisible hover bridge to prevent closing on cursor diagonal movements */
+.unit-header-nav__item:hover > .unit-header-nav__item-content::before,
+.unit-header-nav__item.dropdown-open > .unit-header-nav__item-content::before {
+  content: '' !important;
+  position: absolute !important;
+  top: -18px !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 18px !important;
+  background: transparent !important;
+}
+
+@keyframes jswayDropdownFade {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dropdown Sub-Items */
+.unit-header-nav__item-content .unit-header-nav__item-son {
+  display: block !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  position: relative !important;
+  background: transparent !important;
+}
+
+.unit-header-nav__item-content .unit-header-nav__item-son > .unit-header-nav__item-link {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding: 10px 22px !important;
+  color: #333333 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  line-height: 1.45 !important;
+  white-space: nowrap !important;
+  text-decoration: none !important;
+  transition: all 0.18s ease-in-out !important;
+}
+
+.unit-header-nav__item-content .unit-header-nav__item-son:hover > .unit-header-nav__item-link {
+  background-color: #f6f8fa !important;
+  color: #c91818 !important;
+  padding-left: 26px !important;
+}
+
+.unit-header-nav__item-content .unit-header-nav__item-son .unit-nav_text {
+  transition: color 0.18s ease !important;
+}
+
+.unit-header-nav__item-content .unit-header-nav__item-son:hover .unit-nav_text {
+  color: #c91818 !important;
+}
+
+/* Hide legacy empty subNav container to prevent any interference */
+.unit-header-nav__subNav {
+  display: none !important;
+}

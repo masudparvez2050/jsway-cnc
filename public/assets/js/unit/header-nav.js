@@ -1,3 +1,12 @@
+if (typeof Script === 'undefined') {
+  window.Script = class Script {
+    constructor({attrId, name}) {
+      this.attrId = attrId;
+      this.name = name;
+      this.utilts = (typeof Utilts !== 'undefined' && Utilts.ins) ? Utilts.ins() : { htmlDecode: function(s) { return s; }, getOffset: function() { return { left: 0, top: 0 }; } };
+    }
+  };
+}
 class ScriptHeaderNav extends Script {
   constructor(params) {
     super(params)
